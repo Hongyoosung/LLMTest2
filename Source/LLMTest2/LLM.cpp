@@ -42,9 +42,9 @@ void ULLM::SendRequestToChatGPT(const FString& InMessage)
     UE_LOG(LogTemp, Warning, TEXT("Sending request to ChatGPT API"));
     if (!bIsRequestInProgress)
     {
-        bIsRequestInProgress = true; // 요청이 시작되었음을 플래그로 설정합니다.
+        bIsRequestInProgress = true; // Flag that the request has been initiated.
 
-        // 변수 InMessage를 문자열로 변환하여 JSON 데이터에 삽입
+        // Convert variable InMessage to a string and insert it into JSON data
         FString JsonData = FString::Printf(TEXT("{ \"model\": \"gpt-3.5-turbo\", \"messages\": [{ \"role\": \"system\", \"content\": \"Hello\" }], \"max_tokens\": 20 }"));
 
         HttpRequest->SetContentAsString(JsonData);
@@ -76,7 +76,7 @@ void ULLM::OnRequestComplete(FHttpRequestPtr Request, FHttpResponsePtr Response,
         }
     }
 
-    bIsRequestInProgress = false; // 요청이 완료된 후에 플래그를 설정합니다.
+    bIsRequestInProgress = false; // Set the flag after the request is complete.
 }
 
 void ULLM::HandleResponse(const FString& ResponseString)
